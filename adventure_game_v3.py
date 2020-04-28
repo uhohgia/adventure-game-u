@@ -9,6 +9,7 @@ def messagePause(message):
 
 #enemy = ["pirate", "wicked fairie", "gorgon"]
 #print(random.choice(enemy))
+#random choice enemy method
 
 # GAME INTRO
 def intro():
@@ -52,10 +53,10 @@ def fight_lose():
 
 # DOOR / HOUSE WIN FIGHT
 def fight_win():
-  messagePause("As the pirate moves to attack, you unsheath your new sword.")
+  messagePause("As the gorgon moves to attack, you unsheath your new sword.")
   messagePause("The Sword of Ogoroth shines brightly in your hand as you brace yourself for the attack.")
-  messagePause("But the pirate takes one look at your shiny new toy and runs away!")
-  messagePause("You have rid the town of the pirate. You are victorious!")
+  messagePause("But the gorgon takes one look at your shiny new toy and runs away!")
+  messagePause("You have rid the town of the gorgon. You are victorious!")
 
 # RUNAWAY
 def run_away():
@@ -69,17 +70,21 @@ def play_again_input(play_again_message,options):
     response = input(play_again_message).lower()
     return response 
 
+
 #PLAY AGAIN
 def play_again():
-  while True:  
-    answer = play_again_input("Would you like to play again? Y/N \n", "")
-    if "y" in answer:
-      messagePause("Excellent! Restarting the game ..")
-      intro()
-      main_function()
-    elif "n" in answer:
-      messagePause("Thanks for playing! See you next time.")
-      break
+	while True:  
+	  answer = play_again_input("Would you like to play again? Y/N \n", "")
+	  if "y" in answer:
+	    messagePause("Excellent! Restarting the game ..")
+	    intro()
+	    main_function()
+	    # call random.choice function for enemy -> for random.choide(enemy)
+	  elif "n" in answer:
+	    messagePause("Thanks for playing! See you next time.")
+	  	break
+	  else:
+	  	messagePause("Please select yes or no")
 
 def number_input(message, values):
     while True:
@@ -88,22 +93,24 @@ def number_input(message, values):
             return number
 
 
-
 def house(): 
-  house_intro()
+	house_intro()
   # que quieres hacer? pelear o huir?
-  choice = number_input("Would you like to (1) fight or (2) run away?","")
-  if choice == "1":
-   if "sword" in items:
-    fight_win()
-    play_again()
-   else: # el jugador pierde
-    fight_lose()
-    play_again()
-  elif choice == "2":
-    # SUB 2 huir - el usuario vuelve al campo
-    run_away()
-    main_function()
+	while True:
+	  choice = number_input("Would you like to (1) fight or (2) run away?","")
+	  if choice == "1":
+	   if "sword" in items:
+	    fight_win()
+	    play_again()
+	   else: # el jugador pierde
+	    fight_lose()
+	    play_again()
+	  elif choice == "2":
+	    # SUB 2 huir - el usuario vuelve al campo
+	    run_away()
+	    main_function()
+	  else:
+	  	messagePause("Please enter 1 or 2.")
 
 
 def cave():
@@ -117,13 +124,16 @@ def cave():
     main_function()
 
 def main_function():
-  # recibe instruciones de 1 para casa 2 para cueva
-  choice = number_input("Enter 1 to knock on the door of the house.\n" "Enter 2 to peer into the cave.\n" 
-  "What would you like to do?\n" "(Please enter 1 or 2.)\n", "")
-  if choice == "1":
-    house()
-  elif choice == "2":
-    cave()
+	#Recibe instruciones de 1 para casa 2 para cueva
+	while True:
+		choice = number_input("Enter 1 to knock on the door of the house.\n" "Enter 2 to peer into the cave.\n" 
+		"What would you like to do?\n" "(Please enter 1 or 2.)\n", "")
+		if choice == "1":
+		  house()
+		elif choice == "2":
+		  cave()
+		else:
+			messagePause("Please enter a valid input")
   
 intro()
 main_function()
