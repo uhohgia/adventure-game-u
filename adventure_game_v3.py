@@ -63,54 +63,53 @@ def run_away():
   messagePause("You run back into the field. Luckily, you don't seem to have been followed.")
 
 
+
 # PLAY AGAIN USER INPUT VALIDATION
 def play_again_input(play_again_message,options):
-  options = ["y", "n"]
-  for option in options:
+  while True:
+    options = ["y", "n"]
     response = input(play_again_message).lower()
-    return response 
-
+    for option in options:
+      if option in response:
+        return response
+    print("Please select a valid input")
 
 #PLAY AGAIN
 def play_again():
-	while True:  
-	  answer = play_again_input("Would you like to play again? Y/N \n", "")
-	  if "y" in answer:
-	    messagePause("Excellent! Restarting the game ..")
-	    intro()
-	    main_function()
-	    # call random.choice function for enemy -> for random.choide(enemy)
-	  elif "n" in answer:
-	    messagePause("Thanks for playing! See you next time.")
-	  	break
-	  else:
-	  	messagePause("Please select yes or no")
-
+  answer = play_again_input("Would you like to play again? Y/N \n", "")
+  while True:
+    if "y" in answer:
+      print("Excellent! Restarting the game ..")
+      intro()
+      main_function()
+      # call random.choice function for enemy -> for random.choide(enemy)
+      break
+    elif "n" in answer:
+      print("Thanks for playing! See you next time.")
+      break
+    
+# gets number input
 def number_input(message, values):
-    while True:
-        number = input(message)
-        if values in number:
-            return number
-
+  number = input(message)
+  if values in number:
+      print("NUMBER CHOSEN: \n" + number)
+      return number
 
 def house(): 
-	house_intro()
+  house_intro()
   # que quieres hacer? pelear o huir?
-	while True:
-	  choice = number_input("Would you like to (1) fight or (2) run away?","")
-	  if choice == "1":
-	   if "sword" in items:
-	    fight_win()
-	    play_again()
-	   else: # el jugador pierde
-	    fight_lose()
-	    play_again()
-	  elif choice == "2":
-	    # SUB 2 huir - el usuario vuelve al campo
-	    run_away()
-	    main_function()
-	  else:
-	  	messagePause("Please enter 1 or 2.")
+  choice = number_input("Would you like to (1) fight or (2) run away?","")
+  if choice == "1":
+   if "sword" in items:
+    fight_win()
+    play_again()
+   else: # el jugador pierde
+    fight_lose()
+    play_again()
+  elif choice == "2":
+    # SUB 2 huir - el usuario vuelve al campo
+    run_away()
+    main_function()
 
 
 def cave():
@@ -124,16 +123,15 @@ def cave():
     main_function()
 
 def main_function():
-	#Recibe instruciones de 1 para casa 2 para cueva
-	while True:
-		choice = number_input("Enter 1 to knock on the door of the house.\n" "Enter 2 to peer into the cave.\n" 
-		"What would you like to do?\n" "(Please enter 1 or 2.)\n", "")
-		if choice == "1":
-		  house()
-		elif choice == "2":
-		  cave()
-		else:
-			messagePause("Please enter a valid input")
+  # recibe instruciones de 1 para casa 2 para cueva
+  choice = number_input("Enter 1 to knock on the door of the house.\n" "Enter 2 to peer into the cave.\n" 
+  "What would you like to do?\n" "(Please enter 1 or 2.)\n", "")
+  if choice == "1":
+    house()
+  elif choice == "2":
+    cave()
+  else:
+    messagePause("please enter valid input")
   
 intro()
 main_function()
