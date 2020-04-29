@@ -2,14 +2,16 @@ import time
 import random
 items = []
 
+
 # Function for pausing text
 def messagePause(message):
   print(message)
   #time.sleep(2)
 
-#enemy = ["pirate", "wicked fairie", "gorgon"]
-#print(random.choice(enemy))
-#random choice enemy method
+#random choice
+enemy_list = ["pirate", "wicked fairie", "gorgon"]
+enemy = random.choice(enemy_list)
+
 
 # GAME INTRO
 def intro():
@@ -22,7 +24,7 @@ def intro():
 # HOUSE INTRO
 def house_intro():
   messagePause("You approach the door of the house.")
-  messagePause("You are about to knock when the door opens and out steps a gorgon.")
+  messagePause("You are about to knock when the door opens and out steps a gorgon")
   messagePause("Eep! This is the gorgon's house!")
   messagePause("The gorgon attacks you!")
 
@@ -77,22 +79,19 @@ def play_again_input(play_again_message,options):
 #PLAY AGAIN
 def play_again():
   answer = play_again_input("Would you like to play again? Y/N \n", "")
-  while True:
-    if "y" in answer:
-      print("Excellent! Restarting the game ..")
-      intro()
-      main_function()
-      # call random.choice function for enemy -> for random.choide(enemy)
-      break
-    elif "n" in answer:
-      print("Thanks for playing! See you next time.")
-      break
+  if "y" in answer:
+    print("Excellent! Restarting the game ..")
+    intro()
+    main_function()
+    enemyWord()
+    # call random.choice function for enemy -> for random.choide(enemy)
+  elif "n" in answer:
+    print("Thanks for playing! See you next time.")
     
 # gets number input
 def number_input(message, values):
   number = input(message)
   if values in number:
-      print("NUMBER CHOSEN: \n" + number)
       return number
 
 def house(): 
