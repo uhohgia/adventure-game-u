@@ -2,15 +2,14 @@ import time
 import random
 items = []
 
-
 # Function for pausing text
 def messagePause(message):
   print(message)
   #time.sleep(2)
 
-#random choice
 enemy_list = ["pirate", "wicked fairie", "gorgon"]
 enemy = random.choice(enemy_list)
+print(message, enemy)
 
 
 # GAME INTRO
@@ -65,7 +64,6 @@ def run_away():
   messagePause("You run back into the field. Luckily, you don't seem to have been followed.")
 
 
-
 # PLAY AGAIN USER INPUT VALIDATION
 def play_again_input(play_again_message,options):
   while True:
@@ -83,7 +81,6 @@ def play_again():
     print("Excellent! Restarting the game ..")
     intro()
     main_function()
-    enemyWord()
     # call random.choice function for enemy -> for random.choide(enemy)
   elif "n" in answer:
     print("Thanks for playing! See you next time.")
