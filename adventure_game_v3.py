@@ -7,8 +7,8 @@ def messagePause(message):
   print(message)
   #time.sleep(2)
 
-enemy_list = ["pirate", "wicked fairie", "gorgon"]
-enemy = random.choice(enemy_list)
+enemy_list = ['pirate', 'wicked fairie', 'gorgon']
+enemy_item = random.choice(enemy_list)
 
 # GAME INTRO
 def intro():
@@ -47,15 +47,15 @@ def cave_has_sword():
 # DOOR / HOUSE LOSE FIGHT
 def fight_lose():
   messagePause("You do your best...")
-  messagePause("but your dagger is no match for the gorgon.")
+  messagePause(f"but your dagger is no match for the {enemy_item}.")
   messagePause("You have been defeated!")
 
 # DOOR / HOUSE WIN FIGHT
 def fight_win():
-  messagePause("As the gorgon moves to attack, you unsheath your new sword.")
+  messagePause(f"As the {enemy_item} moves to attack, you unsheath your new sword.")
   messagePause("The Sword of Ogoroth shines brightly in your hand as you brace yourself for the attack.")
-  messagePause("But the gorgon takes one look at your shiny new toy and runs away!")
-  messagePause("You have rid the town of the gorgon. You are victorious!")
+  messagePause(f"But the {enemy_item} takes one look at your shiny new toy and runs away!")
+  messagePause(f"You have rid the town of the {enemy_item}. You are victorious!")
 
 # RUNAWAY
 def run_away():
