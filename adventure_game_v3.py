@@ -9,8 +9,6 @@ def messagePause(message):
 
 enemy_list = ["pirate", "wicked fairie", "gorgon"]
 enemy = random.choice(enemy_list)
-print(message, enemy)
-
 
 # GAME INTRO
 def intro():
@@ -23,9 +21,9 @@ def intro():
 # HOUSE INTRO
 def house_intro():
   messagePause("You approach the door of the house.")
-  messagePause("You are about to knock when the door opens and out steps a gorgon")
-  messagePause("Eep! This is the gorgon's house!")
-  messagePause("The gorgon attacks you!")
+  messagePause(f"You are about to knock when the door opens and out steps a {enemy_item}")
+  messagePause(f"Eep! This is the {enemy_item} house!")
+  messagePause(f"The {enemy_item} attacks you!")
 
 # DOOR / HOUSE LOSE BATTLE
 def house_lose():
