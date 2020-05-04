@@ -8,10 +8,14 @@ def messagePause(message):
   #time.sleep(2)
 
 enemy_list = ['pirate', 'wicked fairie', 'gorgon']
-enemy_item = random.choice(enemy_list)
 
 # GAME INTRO
 def intro():
+  chain = ["msg1", "msg2", "msg3"]
+  for chain in chains:
+    messagePause(chain)
+
+
   messagePause("You find yourself standing in an open field, filled with grass and yellow wildflowers.")
   messagePause("Rumor has it that a is somewhere around here, and has been terrifying the nearby village.")
   messagePause("In front of you is a house.")
@@ -19,7 +23,7 @@ def intro():
   messagePause("In your hand you hold your trusty (but not very effective) dagger.")
 
 # HOUSE INTRO
-def house_intro():
+def house_intro(enemy_item):
   messagePause("You approach the door of the house.")
   messagePause(f"You are about to knock when the door opens and out steps a {enemy_item}")
   messagePause(f"Eep! This is the {enemy_item} house!")
@@ -45,13 +49,13 @@ def cave_has_sword():
   messagePause("You walk back out to the field.")
 
 # DOOR / HOUSE LOSE FIGHT
-def fight_lose():
+def fight_lose(enemy_item):
   messagePause("You do your best...")
   messagePause(f"but your dagger is no match for the {enemy_item}.")
   messagePause("You have been defeated!")
 
 # DOOR / HOUSE WIN FIGHT
-def fight_win():
+def fight_win(enemy_item):
   messagePause(f"As the {enemy_item} moves to attack, you unsheath your new sword.")
   messagePause("The Sword of Ogoroth shines brightly in your hand as you brace yourself for the attack.")
   messagePause(f"But the {enemy_item} takes one look at your shiny new toy and runs away!")
@@ -89,16 +93,16 @@ def number_input(message, values):
   if values in number:
       return number
 
-def house(): 
-  house_intro()
+def house(enemy_item): 
+  house_intro(enemy_item)
   # que quieres hacer? pelear o huir?
   choice = number_input("Would you like to (1) fight or (2) run away?","")
   if choice == "1":
    if "sword" in items:
-    fight_win()
+    fight_win(enemy_item)
     play_again()
    else: # el jugador pierde
-    fight_lose()
+    fight_lose(enemy_item)
     play_again()
   elif choice == "2":
     # SUB 2 huir - el usuario vuelve al campo
@@ -106,7 +110,7 @@ def house():
     main_function()
 
 
-def cave():
+def cave(enemy_item):
   # recibe instruciones de 1 para casa 2 para cueva
   if "sword" in items:
     cave_has_sword()
@@ -117,13 +121,16 @@ def cave():
     main_function()
 
 def main_function():
+  # random choice method goes inside main function.
+  # enemy item variable has to be passed to the functions that need the enemy list available.
+  enemy_item = random.choice(enemy_list)
   # recibe instruciones de 1 para casa 2 para cueva
   choice = number_input("Enter 1 to knock on the door of the house.\n" "Enter 2 to peer into the cave.\n" 
   "What would you like to do?\n" "(Please enter 1 or 2.)\n", "")
   if choice == "1":
-    house()
+    house(enemy_item)
   elif choice == "2":
-    cave()
+    cave(enemy_item)
   else:
     messagePause("please enter valid input")
   
