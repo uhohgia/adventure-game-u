@@ -136,3 +136,7 @@ def main_function():
   
 intro()
 main_function()
+
+
+# Refactor in order to avoid to call main function multiple times.
+# only call main function 1 
